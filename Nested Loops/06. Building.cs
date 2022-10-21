@@ -1,45 +1,32 @@
 using System;
 
-namespace sumOfTwiNumbers
+namespace building
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-             int start =int.Parse(Console.ReadLine());
-             int to=int.Parse(Console.ReadLine());
-             int magicNumber=int.Parse(Console.ReadLine());
-             bool isFound=false;
-             int counter = 0;
-            int firstNum = -1;
-            int secondNum = -1;
+            int floorsCnt=int.Parse(Console.ReadLine());
+            int roomsCnt=int.Parse(Console.ReadLine());
 
-
-             for(int n1 = start; n1 <= to; n1++)
+            for(int fl = floorsCnt; fl >= 1; fl--)
             {
-                for(int n2 = start; n2 <= to; n2++)
-                {    
-                    counter++;
-                    if (n1 + n2 == magicNumber)
-                    {
-                       isFound=true;
-                        firstNum=n1;
-                        secondNum=n2;
-                        break;
-                    }
-                }
-                if (isFound)
+                for(int room =0; room < roomsCnt; room++)
                 {
-                    break;
+                    if (fl == floorsCnt)
+                    {
+                        Console.Write($"L{fl}{room} ");
+                    }
+                    else if (fl % 2 == 0)                                 //evem floor
+                    {
+                        Console.Write($"O{fl}{room} ");
+                    }
+                    else if (fl % 2 != 0)                                    //odd  floor
+                    {
+                        Console.Write($"A{fl}{room} ");
+                    }                                              
                 }
-            }
-            if (isFound)
-            {
-                Console.WriteLine($"Combination N:{counter} ({firstNum} + {secondNum} = {magicNumber})");
-            }
-            else
-            {
-                Console.WriteLine($"{counter} combinations - neither equals {magicNumber}");
+                Console.WriteLine();
             }
         }
     }
